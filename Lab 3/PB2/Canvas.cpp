@@ -81,17 +81,9 @@ void Canvas::FillCircle(int x, int y, int ray, char ch)
         curr_x++;
     }
 }
-//                      2           7       10          1
+
 void Canvas::DrawRect(int left, int top, int right, int bottom, char ch)
 {
-    /*
-            top
-    left            right
-            bot
-    */
-
-    //2,7,10,1
-
     for(int i = bottom; i <= top; i ++)
         grid[i][left] = grid[i][right] = ch;
         

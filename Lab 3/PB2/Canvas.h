@@ -16,5 +16,6 @@ public:
     void DrawLine(int x1, int y1, int x2, int y2, char ch);
     void Print(); // shows what was printed
     void Clear(); // clears the canvas
+    ~Canvas();
 };
 #endif
