@@ -25,6 +25,7 @@ Sort::Sort(int length, int minValue, int maxValue)
 
 Sort::Sort() : ArrLength(5), Array2{12,32,73,2,51}
 {
+    Array = new int[ArrLength];
 
     for(int i = 0; i < ArrLength; i++)
         this->Array[i] = Array2[i];
@@ -40,8 +41,6 @@ Sort::Sort(int vec[], int ArrLength)
         Array[i] = vec[i];
     
     this->ArrLength = ArrLength;
-
-    delete[] Array;
 }
 
 #include <stdarg.h>
@@ -57,8 +56,6 @@ Sort::Sort(int ArrLength, ...)
     va_end(list);
 
     this->ArrLength = ArrLength;
-
-    delete[] Array;
 }
 
 Sort::Sort(char* String)
@@ -72,16 +69,15 @@ Sort::Sort(char* String)
         int number = 0;
         while(*String != ',')
         {
-            number = number + ((int)(*String - '0')) * 10;
-            *String++;
+            number = number * 10 + (*String - '0');
+            String++;
         }
-        *String++;
+        if(*String == ',')
+            String++;
         Array[count] = number;
         count++;
     }
     this->ArrLength = count;
-
-    delete[] Array;
 }
 
 /*-------------Sort Functions---------------*/
@@ -92,7 +88,7 @@ void Sort::InsertSort(bool ascendent)
         int key = Array[i];
         int j = i - 1;
 
-        while (j >= 0 && ascendent == false?Array[j] < key : Array[j] > key) {
+        while (j >= 0 && (ascendent == false?Array[j] < key : Array[j] > key)) {
             Array[j + 1] = Array[j];
             j = j - 1;
         }
@@ -121,8 +117,8 @@ void Sort::QuickSort(int left, int right, bool ascendent)
 			i += d;
 			j -= 1 - d;
 		}
-		QuickSort(left , i - 1);
-		QuickSort(i + 1 , right);
+		QuickSort(left , i - 1, ascendent);
+		QuickSort(i + 1 , right, ascendent);
 	}
 }
 
@@ -133,7 +129,7 @@ void Sort::BubbleSort(bool ascendent)
     for(int i = 0; i < ArrLength - 1; i++)
     {
 
-        for(int j = 0; j < ArrLength - i - 1; i++)
+        for(int j = 0; j < ArrLength - i - 1; j++)
         {
             if(ascendent == false? Array[j] < Array[j + 1] : Array[j] > Array[j + 1])
             {
@@ -163,4 +159,11 @@ int Sort::GetElementsCount()
 int  Sort::GetElementFromIndex(int index)
 {
     return this->Array[index];
+}
+
+/*-------------Destructor----------------*/
+
+Sort::~Sort()
+{
+    delete[] Array;
 }

@@ -10,7 +10,7 @@ int main()
     cout << "Pick how you want the array to be initialised:\n1) An array with random values.\n2) An array with already initialised values.\n3) An array from an existing vector(you have to give input).\n4) An array built on variadic parameters.\n5) An array from a string.\nYour option: ";
     cin >> option1;
     int option2;
-    cout << "\nWhat would you like to do with the array?\n1) Insertion sort.\n2) Quick sort.\n3) Bubble sort.\n4) Print current array.";
+    cout << "\nWhat would you like to do with the array?\n1) Insertion sort.\n2) Quick sort.\n3) Bubble sort.\n4) Print current array.\nYour option: ";
     cin >> option2;
     int option3;
     switch(option1)
@@ -35,8 +35,8 @@ int main()
                     break;
                 case 2:
                     cout << "Ascending or descending(1 or 2):"; cin >> option3;
-                    if(option3 == 1)array.QuickSort(0, array.GetElementsCount(), true);
-                    else array.QuickSort(0, array.GetElementsCount());
+                    if(option3 == 1)array.QuickSort(0, array.GetElementsCount() - 1, true);
+                    else array.QuickSort(0, array.GetElementsCount() - 1);
                     array.Print();
                     break;
                 case 3:

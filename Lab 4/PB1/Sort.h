@@ -20,5 +20,7 @@ public:
     void Print();
     int  GetElementsCount();
     int  GetElementFromIndex(int index);
+
+    ~Sort();
 };
 #endif
